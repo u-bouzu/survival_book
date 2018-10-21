@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'play_help.dart';
+
 void main() {
   runApp(SurvivalBook());
 }
@@ -32,6 +34,7 @@ class SurvivalBook extends StatelessWidget {
               Genres(),
               Icon(Icons.directions_transit),
               Icon(Icons.directions_bike),
+              ExampleApp(),
               // Flows(),
             ],
           ),

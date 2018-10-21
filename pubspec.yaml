@@ -28,6 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  audioplayers: ^0.7.8
 
 
 # For information on the generic Dart part of this file, see the
@@ -43,7 +44,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - gaisyou.json
+    - gaisyou.json
+    - helpJa.mp3
+    - helpEn.mp3
+  # assets:
+  #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
