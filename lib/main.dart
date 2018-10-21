@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(SurvivalBook());
@@ -19,7 +20,7 @@ class SurvivalBook extends StatelessWidget {
               tabs: [
                 Tab(text: "ducument", icon: Icon(Icons.insert_drive_file)),
                 Tab(text: "news", icon: Icon(Icons.event_note)),
-                Tab(text: "map", icon: Icon(Icons.map)),
+                Tab(text: "signal", icon: Icon(Icons.signal_cellular_4_bar)),
                 Tab(text: "flow", icon: Icon(Icons.forward)),
               ],
             ),
@@ -238,12 +239,17 @@ class ActionsState extends State<Actions> {
         String gener;
         String img;
         /*
-        var document =
-            new File('gaisyou.json').readAsString().then((fileContents) {
+        Directory appDocDir =  getApplicationDocumentsDirectory();
+        String appDocPath = appDocDir.path;
         */
+
+        // var document =
+        //  new File('gaisyou.json').readAsString().then((fileContents) {
         Map<String, dynamic> document = json.decode(
             ' { "gener": "ファーストエイド", "title": "外傷の手当", "content": "1.綺麗な流水傷口を洗う2.消毒液で傷口を消毒する3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする4.出血が激しい時は、心臓より傷口を高く上げて保持する","img":""}');
-        // Map<String, dynamic> document = json.decode(fileContents);
+        // var fileContents = rootBundle.loadString('gaisyou.json');
+        // Map<String, dynamic> document = json.decode(fileContents.toString());
+        // debugPrint(Directory.current.toString());
         title = document['title'];
         debugPrint(title);
         content = document['content'];
