@@ -42,26 +42,77 @@ class Genres extends StatefulWidget {
 }
 
 class GenresState extends State<Genres> {
-  FirebaseMessaging _messaging=new FirebaseMessaging();
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _messaging.configure(
-      onLaunch: (Map<String, dynamic> message){
-        print('on Launch $message');
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage:" "$message");
+        var msg = message["sokuhou"];
+        print(msg);
+        _buildDialog(context, "$msg");
       },
-      onMessage: (Map<String, dynamic> message){
-         print('on Message: $message');
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        _buildDialog(context, "onLaunch");
       },
-      onResume: (Map<String, dynamic> message){
-         print('on Resume: $message');
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        _buildDialog(context, "onResume");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      print("Push Messaging token: $token");
+    });
+    _firebaseMessaging.subscribeToTopic("/topics/all");
+  }
+
+  // ダイアログを表示するメソッド
+  void _buildDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          content: new Text("Message: $message"),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text('CLOSE'),
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+            ),
+            new FlatButton(
+              child: const Text('SHOW'),
+              onPressed: () {
+                Navigator.pop(context, true);
+                Navigator.of(context).push(
+                  new MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return new Scaffold(
+                        appBar: new AppBar(
+                          title: const Text('止血'),
+                        ),
+                        body: Text("\n止血の方法が乗っているよ！"),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        );
       }
     );
-    _messaging.getToken().then((token){
-        print(token);
-    });
   }
 
   @override
