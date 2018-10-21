@@ -115,6 +115,11 @@ class Flows extends StatelessWidget {
   }
 }
 */
+//class News extends StatefulWidget {
+//  @override
+//  NewsState createState() => new NewsState();
+//}
+
 class Genres extends StatefulWidget {
   @override
   GenresState createState() => new GenresState();
@@ -179,9 +184,9 @@ class GenresState extends State<Genres> {
                       builder: (BuildContext context) {
                         return new Scaffold(
                           appBar: new AppBar(
-                            title: const Text('止血'),
+                            title: const Text('地震対策'),
                           ),
-                          body: Text("\n止血の方法が乗っているよ！"),
+                          body: Text("\n1. 【発災直後の安全確保】\n発災直後は、自分の身の安全の確保が必要です。落下物に気を付けつつ、大きな什器等から離れて机の下等に隠れて様子を見守りましょう。\n\n2. 【津波からの避難】\n津波の危険性がある場合には、早急に高台等の指定避難場所に避難することが必要です。特に津波の危険性が指摘されている地域では、大きな揺れを感じたら素早く避難を開始することが求められます。津波は第２波や第３波が最大波高となる場合が多く、一旦津波が引いた場合でも沿岸部や浸水地域には近づかないようにしましょう。\n\n 3.  【２つの安全確認】\n　安全な場所に避難するかどうかは、建物の被災状況と共に、土砂災害や堤防決壊等による影響も踏まえて判断するようにしましょう。"),
                         );
                       },
                     ),
