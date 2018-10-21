@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() {
   runApp(SurvivalBook());
@@ -41,6 +42,28 @@ class Genres extends StatefulWidget {
 }
 
 class GenresState extends State<Genres> {
+  FirebaseMessaging _messaging=new FirebaseMessaging();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _messaging.configure(
+      onLaunch: (Map<String, dynamic> message){
+        print('on Launch $message');
+      },
+      onMessage: (Map<String, dynamic> message){
+         print('on Message: $message');
+      },
+      onResume: (Map<String, dynamic> message){
+         print('on Resume: $message');
+      }
+    );
+    _messaging.getToken().then((token){
+        print(token);
+    });
+  }
+
   @override
   final List<WordPair> _suggestions = <WordPair>[];
   final Set<WordPair> _saved = new Set<WordPair>(); // Add this line.
