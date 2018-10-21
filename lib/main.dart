@@ -3,6 +3,7 @@ import 'package:english_words/english_words.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() {
   runApp(SurvivalBook());
@@ -117,6 +118,78 @@ class Genres extends StatefulWidget {
 }
 
 class GenresState extends State<Genres> {
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
+
+  @override
+  void initState() {
+    super.initState();
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage:" "$message");
+        var msg = message["sokuhou"];
+        print(msg);
+        _buildDialog(context, "$msg");
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        _buildDialog(context, "onLaunch");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        _buildDialog(context, "onResume");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      print("Push Messaging token: $token");
+    });
+    _firebaseMessaging.subscribeToTopic("/topics/all");
+  }
+
+  // ダイアログを表示するメソッド
+  void _buildDialog(BuildContext context, String message) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+            content: new Text("Message: $message"),
+            actions: <Widget>[
+              new FlatButton(
+                child: const Text('CLOSE'),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              new FlatButton(
+                child: const Text('SHOW'),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                  Navigator.of(context).push(
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return new Scaffold(
+                          appBar: new AppBar(
+                            title: const Text('止血'),
+                          ),
+                          body: Text("\n止血の方法が乗っているよ！"),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   final List<WordPair> _suggestions = <WordPair>[];
   final Set<WordPair> _saved = new Set<WordPair>(); // Add this line.
