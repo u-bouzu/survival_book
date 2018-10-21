@@ -17,6 +17,19 @@ class _ExampleAppState extends State<ExampleApp> {
   AudioCache audioCache = new AudioCache();
   AudioPlayer advancedPlayer = new AudioPlayer();
 
+  Widget _tab(List<Widget> children) {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: children
+              .map((w) => Container(child: w, padding: EdgeInsets.all(6.0)))
+              .toList(),
+        ),
+      ),
+    );
+  }
+
   Widget _btn(String txt, VoidCallback onPressed) {
     return ButtonTheme(
         minWidth: 48.0,
@@ -37,7 +50,8 @@ class _ExampleAppState extends State<ExampleApp> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        body: localAsset()
+        body: TabBarView(
+          children: [localAsset()],
         ),
       ),
     );
