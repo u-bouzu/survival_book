@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "841025014014",
+    "firebase_url": "https://fir-product-c5668.firebaseio.com",
+    "project_id": "fir-product-c5668",
+    "storage_bucket": "fir-product-c5668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841025014014:android:18400ca0cf243e6d",
+        "android_client_info": {
+          "package_name": "com.company.survival_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841025014014-o7of5pach8plqagustv128j3dm0nhn6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtHnZlnQcf5VC5J92os_ATpajGxpxaAic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841025014014:android:ac1fbd807e2f10a9",
+        "android_client_info": {
+          "package_name": "com.example.survivalbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841025014014-o7of5pach8plqagustv128j3dm0nhn6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtHnZlnQcf5VC5J92os_ATpajGxpxaAic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
