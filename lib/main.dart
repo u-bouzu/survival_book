@@ -33,7 +33,7 @@ class SurvivalBook extends StatelessWidget {
             children: [
               Genres(),
               Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
+              ExampleApp(),
               ExampleApp(),
               // Flows(),
             ],
