@@ -214,32 +214,37 @@ class GenresState extends State<Genres> {
         padding: const EdgeInsets.all(16.0),
         itemCount: _suggestions.length,
         itemBuilder: (context, i) {
-          // if (i.isOdd) return Divider();
+          // if (i.isOdd) return Divider(color: Colors.blue[200]);
           return _buildRow(_suggestions[i]);
         });
   }
 
   Widget _buildRow(String gener) {
-    return ListTile(
-      title: Text(
-        gener,
-        style: _biggerFont,
-      ),
-      onTap: () {
-        Navigator.of(context).push(
-          new MaterialPageRoute(
-            builder: (BuildContext context) {
-              return new Scaffold(
-                appBar: new AppBar(
-                  title: Text(gener),
-                ),
-                body: Actions(),
-              );
-            },
+    return Container(
+        child: ListTile(
+          title: Text(
+            gener,
+            style: _biggerFont,
           ),
-        );
-      },
-    );
+          onTap: () {
+            Navigator.of(context).push(
+              new MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return new Scaffold(
+                    appBar: new AppBar(
+                      title: Text(gener),
+                    ),
+                    body: Actions(),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        decoration: BoxDecoration(
+            border: Border(
+          bottom: BorderSide(color: Colors.blue[200]),
+        )));
   }
 }
 
@@ -279,76 +284,60 @@ class ActionsState extends State<Actions> {
 
   Widget _buildRow(String title) {
     final bool alreadySaved = _saved.contains(title);
-    return ListTile(
-      title: Text(
-        title,
-        style: _biggerFont,
-      ),
-      trailing: new Icon(
-        alreadySaved ? Icons.check_circle : Icons.check_circle_outline,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        String title;
-        String content;
-        /*
+    return Container(
+        child: ListTile(
+          title: Text(
+            title,
+            style: _biggerFont,
+          ),
+          trailing: new Icon(
+            alreadySaved ? Icons.check_circle : Icons.check_circle_outline,
+            color: alreadySaved ? Colors.red : null,
+          ),
+          onTap: () {
+            String title;
+            String content;
+            /*
         String gener;
         String img;
         Directory appDocDir =  getApplicationDocumentsDirectory();
         String appDocPath = appDocDir.path;
         */
 
-        // var document =
-        //  new File('gaisyou.json').readAsString().then((fileContents) {
-        Map<String, dynamic> document = json.decode(
-            ' { "gener": "ファーストエイド", "title": "外傷の手当", "content": "1.綺麗な流水傷口を洗う2.消毒液で傷口を消毒する3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする4.出血が激しい時は、心臓より傷口を高く上げて保持する","img":""}');
-        // var fileContents = rootBundle.loadString('gaisyou.json');
-        // Map<String, dynamic> document = json.decode(fileContents.toString());
-        // debugPrint(Directory.current.toString());
-        title = document['title'];
-        content = document['content'];
-        content =
-            "\nこちらのページでは擦り傷や切り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
-        // gener = document['gener'];
-        // img = document['img'];
-        // return document;
-        // });
+            // var document =
+            //  new File('gaisyou.json').readAsString().then((fileContents) {
+            Map<String, dynamic> document = json.decode(
+                ' { "gener": "ファーストエイド", "title": "外傷の手当", "content": "1.綺麗な流水傷口を洗う2.消毒液で傷口を消毒する3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする4.出血が激しい時は、心臓より傷口を高く上げて保持する","img":""}');
+            // var fileContents = rootBundle.loadString('gaisyou.json');
+            // Map<String, dynamic> document = json.decode(fileContents.toString());
+            // debugPrint(Directory.current.toString());
+            title = document['title'];
+            content = document['content'];
+            content =
+                "\nこちらのページでは擦り傷や切り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
+            // gener = document['gener'];
+            // img = document['img'];
+            // return document;
+            // });
 
-        Navigator.of(context).push(
-          new MaterialPageRoute(
-            builder: (BuildContext context) {
-              return new Scaffold(
-                appBar: new AppBar(
-                  title: Text(title),
-                ),
-                body: Text(content,
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-              );
-            },
-          ),
-        );
-        /*
-        Navigator.of(context).pus(
-          new MaterialPageRoute(
-            builder: (BuildContext context) {
-              var document = new File('public/text/gaisyou.json')
-                  .readAsString()
-                  .then((fileContents) {
-                Map<String, dynamic> document = json.decode(fileContents);
-                return document;
-              });
-  
-              return new Scaffold(
-                appBar: new AppBar(
-                  title: Text(document['title']),
-                ),
-                body: Text(document['content']),
-              );
-            },
-          ),
-        );
-        */
-      },
-    );
+            Navigator.of(context).push(
+              new MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return new Scaffold(
+                    appBar: new AppBar(
+                      title: Text(title),
+                    ),
+                    body: Text(content,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        decoration: BoxDecoration(
+            border: Border(
+          bottom: BorderSide(color: Colors.blue[200]),
+        )));
   }
 }
