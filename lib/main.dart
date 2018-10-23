@@ -250,7 +250,6 @@ class Actions extends StatefulWidget {
 }
 
 class ActionsState extends State<Actions> {
-  @override
   final _suggestions = [
     "外傷の手当",
     "腕の怪我の手当",
@@ -261,7 +260,7 @@ class ActionsState extends State<Actions> {
   ];
   final _saved = new Set<String>();
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _buildSuggestions(),
@@ -308,6 +307,8 @@ class ActionsState extends State<Actions> {
         // debugPrint(Directory.current.toString());
         title = document['title'];
         content = document['content'];
+        content =
+            "\nこちらのページでは擦り傷や切り傷の対処法を紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
         // gener = document['gener'];
         // img = document['img'];
         // return document;
@@ -320,7 +321,8 @@ class ActionsState extends State<Actions> {
                 appBar: new AppBar(
                   title: Text(title),
                 ),
-                body: Text(content),
+                body: Text(content,
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               );
             },
           ),
