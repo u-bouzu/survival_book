@@ -224,7 +224,7 @@ class ActionsState extends State<Actions> {
             title = document['title'];
             content = document['content'];
             content =
-                "\nこちらのページでは擦り傷や��り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
+                "\nこちらのページでは擦り傷や擦り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
 
             Navigator.of(context).push(
               new MaterialPageRoute(
