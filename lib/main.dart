@@ -44,82 +44,6 @@ class SurvivalBook extends StatelessWidget {
   }
 }
 
-/*
-class Flows extends StatelessWidget {
-  final List<WordPair> _suggestions = <WordPair>[];
-  final Set<WordPair> _saved = new Set<WordPair>(); // Add this line.
-  final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildSuggestions(),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return Divider();
-          final index = i ~/ 2;
-
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final bool alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        "山で遭難した場合",
-        style: _biggerFont,
-      ),
-      trailing: new Icon(
-        alreadySaved ? Icons.check_circle : Icons.check_circle_outline,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        Navigator.of(context).push(
-          new MaterialPageRoute(
-            builder: (BuildContext context) {
-              final Iterable<ListTile> tiles = _saved.map(
-                (WordPair pair) {
-                  return new ListTile(
-                    title: new Text(
-                      pair.asPascalCase,
-                      style: _biggerFont,
-                    ),
-                  );
-                },
-              );
-              final List<Widget> divided = ListTile.divideTiles(
-                context: context,
-                tiles: tiles,
-              ).toList();
-
-              return new Scaffold(
-                appBar: new AppBar(
-                  title: const Text('応急処置'),
-                ),
-                body: Actions(),
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
-}
-*/
-//class News extends StatefulWidget {
-//  @override
-//  NewsState createState() => new NewsState();
-//}
-
 class Genres extends StatefulWidget {
   @override
   GenresState createState() => new GenresState();
@@ -214,7 +138,6 @@ class GenresState extends State<Genres> {
         padding: const EdgeInsets.all(16.0),
         itemCount: _suggestions.length,
         itemBuilder: (context, i) {
-          // if (i.isOdd) return Divider(color: Colors.blue[200]);
           return _buildRow(_suggestions[i]);
         });
   }
@@ -243,7 +166,7 @@ class GenresState extends State<Genres> {
         ),
         decoration: BoxDecoration(
             border: Border(
-          bottom: BorderSide(color: Colors.blue[200]),
+          bottom: BorderSide(color: Colors.black26),
         )));
   }
 }
@@ -277,7 +200,6 @@ class ActionsState extends State<Actions> {
         padding: const EdgeInsets.all(16.0),
         itemCount: _suggestions.length,
         itemBuilder: (context, i) {
-          // if (i.isOdd) return Divider();
           return _buildRow(_suggestions[i]);
         });
   }
@@ -297,28 +219,12 @@ class ActionsState extends State<Actions> {
           onTap: () {
             String title;
             String content;
-            /*
-        String gener;
-        String img;
-        Directory appDocDir =  getApplicationDocumentsDirectory();
-        String appDocPath = appDocDir.path;
-        */
-
-            // var document =
-            //  new File('gaisyou.json').readAsString().then((fileContents) {
             Map<String, dynamic> document = json.decode(
                 ' { "gener": "ファーストエイド", "title": "外傷の手当", "content": "1.綺麗な流水傷口を洗う2.消毒液で傷口を消毒する3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする4.出血が激しい時は、心臓より傷口を高く上げて保持する","img":""}');
-            // var fileContents = rootBundle.loadString('gaisyou.json');
-            // Map<String, dynamic> document = json.decode(fileContents.toString());
-            // debugPrint(Directory.current.toString());
             title = document['title'];
             content = document['content'];
             content =
-                "\nこちらのページでは擦り傷や切り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
-            // gener = document['gener'];
-            // img = document['img'];
-            // return document;
-            // });
+                "\nこちらのページでは擦り傷や��り傷などの外傷の手当てを紹介します。\n\n\n1.綺麗な流水傷口を洗う\n\n2.消毒液で傷口を消毒する\n\n3.傷の具合に応じてガーゼ、包帯、救急絆創膏で手当をする\n\n4.出血が激しい時は、心臓より傷口を高く上げて保持する";
 
             Navigator.of(context).push(
               new MaterialPageRoute(
@@ -337,7 +243,7 @@ class ActionsState extends State<Actions> {
         ),
         decoration: BoxDecoration(
             border: Border(
-          bottom: BorderSide(color: Colors.blue[200]),
+          bottom: BorderSide(color: Colors.black26),
         )));
   }
 }
